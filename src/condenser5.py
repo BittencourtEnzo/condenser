@@ -1,6 +1,7 @@
 from collections import defaultdict
 from heapq import nlargest
 from string import punctuation
+import math
 
 import streamlit as st
 import nltk
@@ -53,5 +54,8 @@ def summarize_text_portuguese(text, n_sent=2):
         sum = sum + sentences[i]+" "
     return sum
 
-def condense5(fulltext,k):
-    return summarize_text_portuguese(fulltext, k)
+def condense5(fulltext):
+    k = 0
+    for sentence in fulltext.split("."):
+        k = k+1
+    return summarize_text_portuguese(fulltext,math.floor(k))

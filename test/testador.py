@@ -12,7 +12,7 @@ from langchain_community.document_loaders import UnstructuredFileLoader#, Recurs
 import time
 
 
-loader = UnstructuredFileLoader("../data/McDonalds.txt")
+loader = UnstructuredFileLoader("../data/CEABolsaProtegida.txt")
 docs = loader.load()
 fulltext = docs[0].page_content
 
@@ -45,7 +45,7 @@ fulltext = WHITESPACE_HANDLER(fulltext)
 #     sum3 = sum3 + " " + condense3(sentences)
 #     sum4 = sum4 + " " + condense4(sentences)
 n = 4 #tamanho do chunk
-k = 5
+
 start = time.time()
 sum1 = condense1(fulltext,n)
 end = time.time()
@@ -67,24 +67,21 @@ end = time.time()
 tempo4 = end-start
 
 start = time.time()
-sum5 = condense5(fulltext, k) #parametro adicional é quantas frases vai voltar.
+sum5 = condense5(fulltext) 
 end = time.time()
 tempo5 = end-start
 
 start = time.time()
-sum6 = condense6(fulltext, k)
+sum6 = condense6(fulltext)
 end = time.time()
 tempo6 = end-start
 
 print(tempo1,"\n",tempo2,"\n",tempo3,"\n",tempo4,"\n",tempo5,"\n",tempo6)
 
-with open("McDonalds.txt", "w") as text_file:
+with open("CEABolsaProtegida.txt", "w") as text_file:
     text_file.write("\n\n Primeiro resumo: "+sum1+ "\n Segundo resumo: "+sum2+ "\n Terceiro resumo: "+sum3+ "\n Quarto resumo: "+sum4+ "\n Quinto resumo: "+sum5+ "\n Sexto resumo: "+sum6)
 # print("Primeiro resumo: ",sum1,"\n\n")
 # print("Segundo resumo: ",sum2,"\n\n")
 # print("Terceiro resumo: ",sum3,"\n\n")
 # print("Quarto resumo: ",sum4,"\n\n")
 # print("Quinto resumo: ",sum5,"\n\n")
-
-#teste de velocidade, 
-#comparar com o gpt
