@@ -7,9 +7,11 @@ def condense6(fulltext):
     k = 0
     for sentence in fulltext.split("."):
         k = k+1
+    k = math.ceil(k/5)
     parser = PlaintextParser.from_string(fulltext, Tokenizer('portuguese'))
     summarizer = LuhnSummarizer()
     resumo = summarizer(parser.document, k)
+    #print(k)
 
     sum = ""
     for sentence in resumo:
